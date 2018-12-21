@@ -10,20 +10,20 @@ namespace AppWeb.NuGetClient.Services
 {
     class HttpService : IHttpService
     {
-        private readonly string _baseUrl;
         private readonly HttpClient _httpClient;
-
+        private readonly string _baseUrl;
         public HttpService(string baseUrl)
         {
             _baseUrl = baseUrl ?? throw new ArgumentNullException(nameof(baseUrl));
+
             _httpClient = new HttpClient();
         }
 
-        public async Task<T> GetAsync<T>(string apiUrl)
+        public async Task<T> GetAsync<T>(string endpoint)
         {
             try
             {
-                var responseString = await _httpClient.GetStringAsync(apiUrl);
+                var responseString = await _httpClient.GetStringAsync(_baseUrl + endpoint);
                 
                 var result = JsonConvert.DeserializeObject<T>(responseString);
 

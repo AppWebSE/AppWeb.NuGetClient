@@ -7,6 +7,6 @@ namespace AppWeb.NuGetClient.Services
 {
     interface IHttpService : IDisposable
     {
-        Task<T> GetAsync<T>(string apiUrl);
+        Task<T> GetAsync<T>(string endpoint);
     }
 }

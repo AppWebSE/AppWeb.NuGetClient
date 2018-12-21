@@ -4,10 +4,16 @@
 ## Note
 Work is in progress, this can be seen as a work in progress. 
 
-A package will soon be pushed to the NuGet feed and then we will provide installation instructions.
+Project url: https://appweb.se/en/packages/nuget-client
+
+## Installation
+The package can be installed through nuget https://www.nuget.org/packages/AppWeb.NuGetClient/
+```nuget
+Install-Package AppWeb.NuGetClient
+```
 
 ## Example usage
 ```csharp
-INuGetClient client = new INuGetClient();
+INuGetClient client = new NuGetClient();
 var packageMetaData = await client.GetPackageMetaDataAsync("AppWeb.PageStatusMonitor");
 ```
