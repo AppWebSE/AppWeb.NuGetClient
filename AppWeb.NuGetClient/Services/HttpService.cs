@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppWeb.NuGetClient.Exceptions;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -19,7 +21,18 @@ namespace AppWeb.NuGetClient.Services
 
         public async Task<T> GetAsync<T>(string apiUrl)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseString = await _httpClient.GetStringAsync(apiUrl);
+                
+                var result = JsonConvert.DeserializeObject<T>(responseString);
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new HttpServiceException("HttpGet failed in HttpService", e);
+            }
         }
         public void Dispose()
         {
