@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace AppWeb.NuGetClient
 {
-    public class NugetClient : INuGetClient
+    public class NuGetClient : INuGetClient
     {
         private readonly string _baseUrl = "https://api.nuget.org/v3";
         private readonly IHttpService _httpService;
 
-        public NugetClient()
+        public NuGetClient()
         {
             _httpService = new HttpService(_baseUrl);
         }
