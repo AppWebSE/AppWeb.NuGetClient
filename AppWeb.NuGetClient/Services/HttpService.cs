@@ -2,8 +2,10 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -40,16 +42,29 @@ namespace AppWeb.NuGetClient.Services
         {
             try
             {
-                var responseStream= await _httpClient.GetStreamAsync(_baseUrl + endpoint);
+                var xml = await _httpClient.GetStringAsync(_baseUrl + endpoint);
 
-                XmlSerializer mySerializer = new XmlSerializer(typeof(T));
+                xml = RemoveTypeTagFromXml(xml);
 
-                return (T)mySerializer.Deserialize(responseStream);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));                
+                using (TextReader textReader = new StringReader(xml))
+                {
+                    return (T)xmlSerializer.Deserialize(textReader);
+                }
             }
             catch (Exception e)
             {
                 throw new HttpServiceException($"HttpGet failed in HttpService.GetByXmlAsync", e);
             }
+        }
+
+        private static string RemoveTypeTagFromXml(string xml)
+        {
+            if (!string.IsNullOrEmpty(xml) && xml.Contains("xmlns"))
+            {
+                xml = Regex.Replace(xml, @"(xmlns:?[^=]*=[""][^""]*[""])", "");
+            }
+            return xml;
         }
 
         public void Dispose()

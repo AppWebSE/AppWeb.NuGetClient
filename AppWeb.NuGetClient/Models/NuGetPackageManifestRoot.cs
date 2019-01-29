@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace AppWeb.NuGetClient.Models
 {    
     [Serializable()]
-    [XmlRoot("package", Namespace = "http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd")]
+    [XmlRoot("package")]
     public class NuGetPackageManifestRoot
     {
         [XmlElement("metadata")]

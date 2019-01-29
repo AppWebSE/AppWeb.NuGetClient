@@ -12,7 +12,7 @@ namespace AppWeb.NuGetClient.CMD
 
             var metaData = nugetClient.GetPackageMetaDataAsync("AppWeb.NuGetClient").Result;
             var packageVersions = nugetClient.GetPackageVersionsAsync("AppWeb.NuGetClient").Result;
-            var packageManifest = nugetClient.GetPackageManifestAsync("AppWeb.NuGetClient").Result;
+            var packageManifest = nugetClient.GetPackageManifestAsync("AppWeb.PageStatusMonitor").Result;
             //var manifest2 = nugetClient.GetPackageManifestAsync("AppWeb.NuGetClient", "0.1.2").Result;
 
             Console.WriteLine($"Metadata count: {metaData.Count}");
