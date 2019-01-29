@@ -11,8 +11,19 @@ namespace AppWeb.NuGetClient.CMD
             INuGetClient nugetClient = new NuGetClient();
 
             var metaData = nugetClient.GetPackageMetaDataAsync("AppWeb.NuGetClient").Result;
+            var packageVersions = nugetClient.GetPackageVersionsAsync("AppWeb.NuGetClient").Result;
+            var packageManifest = nugetClient.GetPackageManifestAsync("AppWeb.NuGetClient").Result;
+            //var manifest2 = nugetClient.GetPackageManifestAsync("AppWeb.NuGetClient", "0.1.2").Result;
 
-            Console.WriteLine(metaData.Count);
+            Console.WriteLine($"Metadata count: {metaData.Count}");
+
+            foreach(var version in packageVersions?.Versions)
+            {
+                Console.WriteLine($"version: {version}");
+            }
+            
+            Console.WriteLine($"Manifest1 Id: {packageManifest?.Id}");
+            //Console.WriteLine($"Manifest2 RepositoryUrl: {manifest2?.Repository?.Url}");
 
             Console.ReadLine();
         }

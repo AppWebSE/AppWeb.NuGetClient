@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AppWeb.NuGetClient.Services
 {
@@ -19,7 +20,7 @@ namespace AppWeb.NuGetClient.Services
             _httpClient = new HttpClient();
         }
 
-        public async Task<T> GetAsync<T>(string endpoint)
+        public async Task<T> GetByJsonAsync<T>(string endpoint)
         {
             try
             {
@@ -31,9 +32,26 @@ namespace AppWeb.NuGetClient.Services
             }
             catch (Exception e)
             {
-                throw new HttpServiceException("HttpGet failed in HttpService", e);
+                throw new HttpServiceException("HttpGet failed in HttpService.GetByJsonAsync", e);
             }
         }
+
+        public async Task<T> GetByXmlAsync<T>(string endpoint)
+        {
+            try
+            {
+                var responseStream= await _httpClient.GetStreamAsync(_baseUrl + endpoint);
+
+                XmlSerializer mySerializer = new XmlSerializer(typeof(T));
+
+                return (T)mySerializer.Deserialize(responseStream);
+            }
+            catch (Exception e)
+            {
+                throw new HttpServiceException($"HttpGet failed in HttpService.GetByXmlAsync", e);
+            }
+        }
+
         public void Dispose()
         {
             _httpClient.Dispose();
