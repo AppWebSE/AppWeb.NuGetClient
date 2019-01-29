@@ -7,6 +7,7 @@ namespace AppWeb.NuGetClient.Services
 {
     interface IHttpService : IDisposable
     {
-        Task<T> GetAsync<T>(string endpoint);
+        Task<T> GetByJsonAsync<T>(string endpoint);
+        Task<T> GetByXmlAsync<T>(string endpoint);
     }
 }
