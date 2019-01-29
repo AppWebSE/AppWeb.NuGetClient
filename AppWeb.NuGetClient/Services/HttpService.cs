@@ -44,7 +44,7 @@ namespace AppWeb.NuGetClient.Services
             {
                 var xml = await _httpClient.GetStringAsync(_baseUrl + endpoint);
 
-                xml = RemoveTypeTagFromXml(xml);
+                xml = RemoveNameSpaceTagFromXml(xml);
 
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));                
                 using (TextReader textReader = new StringReader(xml))
@@ -58,7 +58,7 @@ namespace AppWeb.NuGetClient.Services
             }
         }
 
-        private static string RemoveTypeTagFromXml(string xml)
+        private static string RemoveNameSpaceTagFromXml(string xml)
         {
             if (!string.IsNullOrEmpty(xml) && xml.Contains("xmlns"))
             {
