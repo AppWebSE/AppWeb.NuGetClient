@@ -12,7 +12,7 @@ namespace AppWeb.NuGetClient
         Task<NuGetPackageVersions> GetPackageVersionsAsync(string packageId);
         NuGetPackageVersions GetPackageVersions(string packageId);
 
-        Task<NuGetPackageManifest> GetPackageManifestAsync(string packageId, string verison = null);
+        Task<NuGetPackageManifest> GetPackageManifestAsync(string packageId, string version = null);
         NuGetPackageManifest GetPackageManifest(string packageId, string verison = null);
     }
 }
