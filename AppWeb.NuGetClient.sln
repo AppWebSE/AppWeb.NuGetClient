@@ -8,11 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71B2BFD8-B255-4C3C-BCD7-2BCFD6561986}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		icon.png = icon.png
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWeb.NuGetClient.CMD", "AppWeb.NuGetClient.CMD\AppWeb.NuGetClient.CMD.csproj", "{1166F8F5-6675-475C-AF39-E8F6F87AAB25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppWeb.NuGetClient.CMD", "AppWeb.NuGetClient.CMD\AppWeb.NuGetClient.CMD.csproj", "{1166F8F5-6675-475C-AF39-E8F6F87AAB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
